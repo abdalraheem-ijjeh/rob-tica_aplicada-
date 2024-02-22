@@ -8,7 +8,7 @@ from std_msgs.msg import Float64MultiArray
 
 class KalmanFilterNode2D:
     def __init__(self):
-        rospy.init_node('kalman_filter_node_2d', anonymous=True)
+        rospy.init_node('kalman_filter_node', anonymous=False)
         self.pub_filtered_position = rospy.Publisher('filtered_position', PointStamped, queue_size=10)
         self.sub_sensor_data = rospy.Subscriber('sensor_data', Float64MultiArray, self.sensor_data_callback)
 
