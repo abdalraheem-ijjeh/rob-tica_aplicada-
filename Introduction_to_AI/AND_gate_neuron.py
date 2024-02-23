@@ -1,5 +1,4 @@
 import random
-
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -60,7 +59,7 @@ for epoch in range(epochs):
     weights_history.append(list(and_gate.history_weights))
     bias_history.append(and_gate.bias_history)
 
-# Plotting the decision boundary
+# Plotting the output of the AND gate neuron
 fig, axs = plt.subplots(1, 2, figsize=(12, 5))
 axs[0].set_title('AND Gate Neuron')
 axs[0].set_xlabel('Input 1')
@@ -72,9 +71,6 @@ for input_data, target_output in training_data:
         axs[0].scatter(input_data[0], input_data[1], color='blue', label='Positive (1)')
     else:
         axs[0].scatter(input_data[0], input_data[1], color='red', label='Negative (0)')
-
-# Plotting the decision boundary (x2 = -x1 + 1.5)
-# plt.plot([0, 2], [2, 0], linestyle='--', color='green', label='Decision Boundary')
 
 axs[0].legend()
 axs[0].grid(True)
@@ -96,3 +92,4 @@ print(and_gate.activate([0, 0]))  # Output: 0
 print(and_gate.activate([0, 1]))  # Output: 0
 print(and_gate.activate([1, 0]))  # Output: 0
 print(and_gate.activate([1, 1]))  # Output: 1
+
