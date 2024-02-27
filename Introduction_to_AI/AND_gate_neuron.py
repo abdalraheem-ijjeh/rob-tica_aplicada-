@@ -20,7 +20,7 @@ class Neuron:
 
         # Apply activation function (Step function for AND gate)
         if weighted_sum >= 0:
-            return weighted_sum
+            return 1
         else:
             return 0
 
