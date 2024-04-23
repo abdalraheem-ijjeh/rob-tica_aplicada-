@@ -26,23 +26,23 @@ y_test = tf.keras.utils.to_categorical(y_test)
 ##################
 # Hyperparameters
 ##################
-epochs = 100
+epochs = 50
 val_split = 0.15
 batchs = 32
 ##################
 image_shape = (28, 28, 1)
 # Building the purly ANN model Using Functional method
-inputs = tf.keras.layers.Input(image_shape)
-x = tf.keras.layers.Flatten()(inputs)
-x = tf.keras.layers.Dense(512, activation='relu')(x)
-x = tf.keras.layers.Dropout(0.4)(x)
+inputs_X = tf.keras.layers.Input(image_shape)
+x = tf.keras.layers.Flatten()(inputs_X)
 x = tf.keras.layers.Dense(256, activation='relu')(x)
 x = tf.keras.layers.Dropout(0.4)(x)
 x = tf.keras.layers.Dense(128, activation='relu')(x)
 x = tf.keras.layers.Dropout(0.4)(x)
 x = tf.keras.layers.Dense(64, activation='relu')(x)
+x = tf.keras.layers.Dropout(0.4)(x)
+x = tf.keras.layers.Dense(32, activation='relu')(x)
 outputs = tf.keras.layers.Dense(10, activation='softmax')(x)
-model = tf.keras.models.Model(inputs, outputs)
+model = tf.keras.models.Model(inputs_X, outputs)
 #########################
 # Show model summary
 model.summary()
@@ -53,9 +53,9 @@ model.compile(optimizer='Adam',
               metrics=['accuracy'])
 
 model.fit(x_train, y_train,
-          batch_size=32,
-          epochs=100,
-          validation_split=0.15)
+          batch_size=batchs,
+          epochs=epochs,
+          validation_split=val_split)
 
 # Evaluate the trained model
 score = model.evaluate(x_test, y_test, verbose=0)
