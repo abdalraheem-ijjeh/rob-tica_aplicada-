@@ -3,7 +3,9 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-# Load dataset
+print(tf.__version__)
+print(tf.keras.__version__)
+
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
 pretrained_model = tf.keras.models.load_model('ANN_model_MNIST_CLASSIFIER.h5', compile=False)
