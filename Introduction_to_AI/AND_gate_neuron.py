@@ -12,13 +12,10 @@ class Neuron:
         self.bias_history = [bias]
 
     def activate(self, inputs):
-        # Check if the number of inputs matches the number of weights
         assert len(inputs) == len(self.weights)
 
-        # Calculate the weighted sum of inputs
         weighted_sum = sum([inputs[i] * self.weights[i] for i in range(len(inputs))]) + self.bias
 
-        # Apply activation function (Step function for AND gate)
         if weighted_sum >= 0:
             return 1
         else:
@@ -34,14 +31,11 @@ class Neuron:
         self.history_weights.append(list(self.weights))
 
 
-# Define the weights and bias for the AND gate
 and_weights = [0, 0]
-and_bias = 1  # Bias is set to -1.5 to mimic the behavior of AND gate
+and_bias = 1  
 
-# Create an AND gate neuron
 and_gate = Neuron(and_weights, and_bias)
 
-# Training data for AND gate (inputs and corresponding target outputs)
 training_data = [
     ([0, 0], 0),
     ([0, 1], 0),
@@ -49,7 +43,6 @@ training_data = [
     ([1, 1], 1)
 ]
 
-# Train the AND gate neuron
 epochs = 300
 weights_history = []
 bias_history = []
@@ -59,13 +52,11 @@ for epoch in range(epochs):
     weights_history.append(list(and_gate.history_weights))
     bias_history.append(and_gate.bias_history)
 
-# Plotting the output of the AND gate neuron
 fig, axs = plt.subplots(1, 2, figsize=(12, 5))
 axs[0].set_title('AND Gate Neuron')
 axs[0].set_xlabel('Input 1')
 axs[0].set_ylabel('Input 2')
 
-# Plotting the training data points
 for input_data, target_output in training_data:
     if target_output == 1:
         axs[0].scatter(input_data[0], input_data[1], color='blue', label='Positive (1)')
@@ -87,7 +78,6 @@ axs[1].grid(True)
 plt.savefig('/home/abdalraheem/Desktop/AND_neuron.png')
 plt.show()
 
-# Test the AND gate after training
 print(and_gate.activate([0, 0]))  # Output: 0
 print(and_gate.activate([0, 1]))  # Output: 0
 print(and_gate.activate([1, 0]))  # Output: 0
