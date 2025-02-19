@@ -6,7 +6,7 @@ import tensorflow as tf
 dataset = tf.keras.datasets.mnist.load_data()
 (x_train, y_train), (x_test, y_test) = dataset
 
-# Scale images to the [0, 1] range
+# It is recommened to scale images to the [0, 1] range
 x_train = x_train.astype("float32") / 255
 x_test = x_test.astype("float32") / 255
 
@@ -18,7 +18,7 @@ print("x_train shape:", x_train.shape)
 print(x_train.shape[0], "train samples")
 print(x_test.shape[0], "test samples")
 
-# convert class vectors to binary class matrices
+# Here is an important step -> convert class vectors to binary class matrices
 y_train = tf.keras.utils.to_categorical(y_train)
 y_test = tf.keras.utils.to_categorical(y_test)
 input_shape = (28, 28, 1)
@@ -71,4 +71,3 @@ print("Test loss:", score[0])
 print("Test accuracy:", score[1])
 
 model.save('CNN_classifier.h5')
-
